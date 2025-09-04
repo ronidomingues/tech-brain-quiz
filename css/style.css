@@ -1,0 +1,253 @@
+:root {
+    /* Cores principais */
+    --cor-fundo: #0a0a1a;
+    --cor-primaria: #00e5ff;
+    --cor-secundaria: #ff00e5;
+    --cor-texto: #e6e6fa;
+    --cor-card: #1c1c3a;
+
+    /* Gradiente e sombras */
+    --gradiente-botoes: linear-gradient(45deg, var(--cor-primaria), var(--cor-secundaria));
+    --sombra-neon: 0 0 10px var(--cor-primaria), 0 0 20px var(--cor-secundaria);
+    --sombra-interna-card: inset 0 0 8px rgba(0, 229, 255, 0.5);
+
+    /* Fontes */
+    --fonte-principal: 'Poppins', sans-serif;
+    --fonte-secundaria: 'Fira Code', monospace;
+}
+
+/* Importa fontes do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Poppins:wght@400;700&display=swap');
+
+/* Reset básico e configurações globais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--fonte-principal);
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem 1rem;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Efeito de fundo futurista (grid ou partículas) */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(0, 229, 255, 0.1) 1px, transparent 1px) no-repeat;
+    background-size: 50px 50px;
+    z-index: -1;
+    opacity: 0.1;
+    animation: backgroundMove 60s linear infinite;
+}
+
+@keyframes backgroundMove {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 5000px 5000px;
+    }
+}
+
+/* Animação para entrada de elementos */
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+h1, p, span, .form-initial {
+    animation: fadeInScale 1s ease-out;
+}
+
+/* Título principal */
+h1 {
+    font-family: var(--fonte-secundaria);
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    text-shadow: var(--sombra-neon);
+    letter-spacing: 2px;
+}
+
+/* Textos de introdução */
+p, span {
+    max-width: 600px;
+    margin: 1rem auto;
+}
+
+span {
+    display: block;
+    background-color: var(--cor-card);
+    padding: 1rem;
+    border-radius: 12px;
+    border: 1px solid var(--cor-primaria);
+    box-shadow: var(--sombra-interna-card), var(--sombra-neon);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    margin-top: 1.5rem;
+    text-align: left;
+    white-space: pre-wrap; /* Mantém a quebra de linha do HTML */
+}
+
+/* Formulário principal */
+.form-initial {
+    background-color: var(--cor-card);
+    padding: 2rem;
+    border-radius: 20px;
+    border: 2px solid var(--cor-secundaria);
+    box-shadow: 0 0 15px var(--cor-secundaria);
+    width: 100%;
+    max-width: 400px;
+    margin-top: 2rem;
+    transform: perspective(1000px) rotateY(0deg);
+    transition: transform 0.5s ease;
+}
+
+.form-initial:hover {
+    transform: perspective(1000px) rotateY(5deg);
+}
+
+.form-initial form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Labels e inputs/selects */
+label {
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--cor-primaria);
+    text-align: left;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+input[type="text"], select {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 2px solid var(--cor-secundaria);
+    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.4);
+    color: var(--cor-texto);
+    font-family: var(--fonte-secundaria);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    -webkit-appearance: none; /* Remove estilo padrão em WebKit */
+    -moz-appearance: none; /* Remove estilo padrão em Firefox */
+    appearance: none;
+}
+
+input[type="text"]:focus, select:focus {
+    outline: none;
+    border-color: var(--cor-primaria);
+    box-shadow: 0 0 8px var(--cor-primaria);
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2300e5ff'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1.2rem;
+    cursor: pointer;
+}
+
+/* Botoes */
+button {
+    font-family: var(--fonte-secundaria);
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: var(--gradiente-botoes);
+    color: var(--cor-fundo);
+    box-shadow: 0 0 10px rgba(255, 0, 229, 0.5);
+}
+
+button[type="reset"] {
+    background: none;
+    border: 2px solid var(--cor-primaria);
+    color: var(--cor-primaria);
+    box-shadow: none;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 0 20px var(--cor-primaria), 0 0 30px var(--cor-secundaria);
+}
+
+button[type="reset"]:hover {
+    transform: translateY(-3px) scale(1.05);
+    background-color: rgba(0, 229, 255, 0.1);
+    box-shadow: 0 0 15px var(--cor-primaria);
+}
+
+/* Responsividade para telas maiores (Mobile First) */
+@media (min-width: 768px) {
+    h1 {
+        font-size: 3.5rem;
+    }
+
+    p {
+        font-size: 1.1rem;
+    }
+
+    .form-initial {
+        padding: 3rem;
+    }
+}
+
+/* Animação adicional para o formulário */
+.form-initial::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    border-radius: 25px;
+    background: linear-gradient(45deg, var(--cor-primaria), var(--cor-secundaria));
+    z-index: -1;
+    filter: blur(15px);
+    opacity: 0.6;
+    animation: neonGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes neonGlow {
+    from {
+        opacity: 0.6;
+    }
+    to {
+        opacity: 0.9;
+    }
+}
