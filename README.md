@@ -102,7 +102,9 @@ $questions = [
 ```bash
 git clone https://github.com/ronidomingues/tech-brain-quiz.git
 cd tech-brain-quiz
-php -S localhost:8000 -t public
+php -S localhost:8000 -t public/
+ou
+php -S 0.0.0.0:8000 -t public/
 ```
 
 Abra o navegador em `http://localhost:8000`.
