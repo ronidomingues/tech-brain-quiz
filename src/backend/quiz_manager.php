@@ -5,9 +5,9 @@ session_start();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Aqui estou verificando se as devidas váriáveis, necessárias para essa execução, foram enviadas pelo formulário;
     if (isset($_POST['name']) && isset($_POST['difficulty']) && isset($_POST['idioms']) && isset($_POST['percentage'])) {
-        $pl_name = $_POST['name'] ?? 'Player'; // Nome do jogador, padrão 'Player' se não fornecido;
-        $difficulty = $_POST['difficulty'] ?? 'aleatory'; // Dificuldade escolhida, padrão 'aleatory' se não fornecido;
-        $idioms = $_POST['idioms'] ?? 'pt_br'; // Define o idioma, padrão 'pt_br' se não fornecido;
+        $pl_name = trim($_POST['name']) ?? 'Player'; // Nome do jogador, padrão 'Player' se não fornecido;
+        $difficulty = trim($_POST['difficulty']) ?? 'aleatory'; // Dificuldade escolhida, padrão 'aleatory' se não fornecido;
+        $idioms = trim($_POST['idioms']) ?? 'pt_br'; // Define o idioma, padrão 'pt_br' se não fornecido;
         $percentage = floatval(str_replace(',', '.', $_POST['percentage'])) ?? 1.0; // Define a porcentagem de perguntas, padrão 100% se não fornecido;
         $_SESSION['player'] = $pl_name; // Armazena o nome do jogador na sessão;
         $_SESSION['difficulty'] = $difficulty; // Armazena a dificuldade escolhida na sessão;
