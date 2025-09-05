@@ -1,0 +1,325 @@
+/******************************************
+* Configurando o estilo das particulas *
+******************************************/
+/* Fundo de partículas ocupa a tela toda */
+#particles-js {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1; /* fica atrás do conteúdo */
+}
+/* Conteúdo acima do fundo */
+.content {
+    position: relative;
+    z-index: 1;
+}
+/**********************************************************
+* Daqui para baixo vai as configurações de estilo do quiz *
+***********************************************************/
+:root {
+    --primary-color: #00b4d8;
+    --secondary-color: #0077b6;
+    --accent-color: #90e0ef;
+    --background-dark: #03045e;
+    --text-light: #ffffff;
+    --text-muted: #caf0f8;
+    --glass-bg: rgba(255, 255, 255, 0.1);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --glass-shadow: rgba(0, 0, 0, 0.3);
+    --success-color: #4cc9f0;
+    --error-color: #f72585;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, var(--background-dark) 0%, #023e8a 100%);
+    color: var(--text-light);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    overflow-x: hidden;
+    position: relative;
+}
+.container {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-section {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+/* CORREÇÃO AQUI: adicionei o ponto antes de content-wrapper */
+.content-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 2rem;
+}
+
+h1 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: var(--accent-color);
+    text-shadow: 0 2px 10px rgba(0, 180, 216, 0.5);
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    padding: 1rem 2rem;
+    border-radius: 20px;
+    border: 1px solid var(--glass-border);
+    width: 100%;
+}
+
+.tagline {
+    font-size: 1.2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.instructions {
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    width: 100%;
+    box-shadow: 0 8px 32px var(--glass-shadow);
+}
+
+.instructions-title {
+    font-size: 1.5rem;
+    color: var(--accent-color);
+    margin-bottom: 1.2rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.rule {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+    padding: 0.8rem;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+}
+
+.rule-icon {
+    font-size: 1.5rem;
+    margin-right: 0.8rem;
+    min-width: 30px;
+}
+
+.rule-content {
+    flex: 1;
+}
+
+.difficulty-levels {
+    margin-top: 1.5rem;
+}
+
+.difficulty-title {
+    font-size: 1.2rem;
+    color: var(--accent-color);
+    margin-bottom: 0.8rem;
+    border-bottom: 1px solid var(--glass-border);
+    padding-bottom: 0.5rem;
+}
+
+.level {
+    display: flex;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.level-name {
+    font-weight: bold;
+    min-width: 100px;
+    color: var(--accent-color);
+}
+
+.form-initial {
+    width: 100%;
+    max-width: 600px;
+}
+
+form {
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 8px 32px var(--glass-shadow);
+    height: 100%;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--accent-color);
+}
+
+input[type="text"],
+select {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    margin-bottom: 1.2rem;
+    border: none;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.3);
+    color: var(--text-light);
+    border: 1px solid var(--glass-border);
+    transition: all 0.3s ease;
+}
+
+input[type="text"]:focus,
+select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(0, 180, 216, 0.3);
+}
+
+button {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 1rem;
+    width: 100%;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 180, 216, 0.3);
+}
+
+button[type="reset"] {
+    background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+    box-shadow: 0 4px 15px rgba(108, 117, 125, 0.3);
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 180, 216, 0.5);
+}
+
+button[type="reset"]:hover {
+    box-shadow: 0 6px 20px rgba(108, 117, 125, 0.5);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+        padding: 0.8rem 1.5rem;
+    }
+    
+    .tagline {
+        font-size: 1.1rem;
+    }
+    
+    .instructions,
+    form {
+        padding: 1.5rem;
+    }
+    
+    .rule {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .rule-icon {
+        margin-right: 0;
+        margin-bottom: 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.8rem;
+    }
+    
+    .instructions,
+    form {
+        padding: 1.2rem;
+    }
+    
+    .instructions-title {
+        font-size: 1.3rem;
+    }
+}
+
+/* Animações */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.container > * {
+    animation: fadeIn 0.6s ease-out;
+}
+
+.header-section {
+    animation-delay: 0.2s;
+}
+
+.content-wrapper > * {
+    animation: fadeIn 0.6s ease-out;
+}
+
+.content-wrapper > *:nth-child(1) {
+    animation-delay: 0.4s;
+}
+
+.content-wrapper > *:nth-child(2) {
+    animation-delay: 0.6s;
+}
+
+@media (min-width: 992px) {
+    .content-wrapper {
+        flex-direction: row;  /* Mudei para linha em telas grandes */
+        align-items: flex-start;
+    }
+    
+    .instructions {
+        flex: 1;
+        margin-bottom: 0;  /* Removi a margem inferior */
+    }
+    
+    .form-initial {
+        flex: 1;
+        max-width: none; /* Removi a limitação de largura máxima */
+    }
+}

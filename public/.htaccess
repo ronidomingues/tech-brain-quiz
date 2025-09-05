@@ -1,0 +1,25 @@
+# Garantindo que qualquer redirecionamento caia sempre em index.php;
+DirectoryIndex index.php
+
+# Reescrita de URLs;
+##RewriteEngine on
+##RewriteRule ^quiz/([0-9]+)$ quiz.php?id=$1 [L]
+
+# Proteção de pastas;
+<Directory "../src">
+	Require all denied
+</Directory>
+
+# Mostrar páginas de erro amigaveis;
+ErrorDocument 404 /404.html
+
+# Melhorar performance do site com cache de CSS/JS ou gzip;
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/png "access plus 1 month"
+</IfModule>
+
+# Protege pastas sensíveis (não que ainda exista aqui dentro)
+<FilesMatch "(\.env|\.git)">
+    Require all denied
+</FilesMatch>
