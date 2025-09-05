@@ -1,5 +1,28 @@
 # TechBrain Quiz
 
+## Sumário
+
+- [TechBrain Quiz](#techbrain-quiz)
+  - [Sumário](#sumário)
+  - [Sobre o Projeto](#sobre-o-projeto)
+  - [Funcionalidades](#funcionalidades)
+  - [Regras do Jogo](#regras-do-jogo)
+  - [Estrutura do Projeto](#estrutura-do-projeto)
+  - [Estrutura do Array de Questões](#estrutura-do-array-de-questões)
+  - [Como Usar o Projeto](#como-usar-o-projeto)
+    - [PHP embutido](#php-embutido)
+    - [Usando Apache](#usando-apache)
+  - [Telas do Quiz](#telas-do-quiz)
+    - [Tela inicial](#tela-inicial)
+    - [Tela de questões](#tela-de-questões)
+    - [Tela de acerto](#tela-de-acerto)
+    - [Tela de erro](#tela-de-erro)
+    - [Tela de reinício da partida](#tela-de-reinício-da-partida)
+    - [Tela final do quiz](#tela-final-do-quiz)
+  - [Contato](#contato)
+  - [Licença](#licença)
+  - [Considerações Finais](#considerações-finais)
+
 ## Sobre o Projeto
 
 O **TechBrain Quiz** é um jogo de perguntas e respostas desenvolvido em **PHP**, sem banco de dados ou armazenamento externo.  
