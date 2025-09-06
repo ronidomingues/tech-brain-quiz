@@ -8,13 +8,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $pl_name = trim($_POST['name']) ?? 'Player'; // Nome do jogador, padrão 'Player' se não fornecido;
         $difficulty = trim($_POST['difficulty']) ?? 'aleatory'; // Dificuldade escolhida, padrão 'aleatory' se não fornecido;
         $idioms = trim($_POST['idioms']) ?? 'pt_br'; // Define o idioma, padrão 'pt_br' se não fornecido;
-        $percentage = floatval(str_replace(',', '.', $_POST['percentage'])) ?? 1.0; // Define a porcentagem de perguntas, padrão 100% se não fornecido;
+        $percentage = floatval(str_replace(',', '.', $_POST['percentage'])) ?? 0.2; // Define a porcentagem de perguntas que o usúario deseja, padrão 20% se não fornecido;
         $_SESSION['player'] = $pl_name; // Armazena o nome do jogador na sessão;
         $_SESSION['difficulty'] = $difficulty; // Armazena a dificuldade escolhida na sessão;
         $_SESSION['idioms'] = $idioms; // Armazena o idioma escolhido na sessão;
         $_SESSION['lives'] = 3; // Define o número inicial de vidas;
         $_SESSION['score'] = 0; // Define a pontuação inicial;
-        $_SESSION['current_question'] = 0; // Define a questão atual;
+        $_SESSION['current_question'] = 1; // Define a questão atual;
         $_SESSION['feedback'] = ''; // Define o feedback inicial Acerto ou erro;
         $_SESSION['explanation'] = ''; // Define a explicação que será mostrada ao jogador;
         $_SESSION['idioms'] = $idioms; // Armazena o idioma escolhido na sessão;
@@ -41,10 +41,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // ESTOU FAZENDO O CÓDIOIGO COM VERIFICAÇÕES COMO SE FOSSE UM CENÁRIO REAL, ONDE EU NÃO TERIA CONTROLE SOBRE A QUANTIDADE DE PERGUNTAS EM CADA NÍVEL DE DIFICULDADE.
         // ISSO PARA QUE EU POSSA TER UM CÓDIGO MAIS ROBUSTO E QUE POSSA SER REUTILIZADO EM OUTROS CENÁRIOS.
         // Calculando o número de perguntas com base na quantidade de perguntas disponíveis em cada nível de dificuldade;
-        // Estou tomando 40% do total de perguntas disponíveis em cada nível de dificuldade;
-        $percent_to_do_easy = round($percentage * count($questions['easy']));//51 ao todo;
-        $percent_to_do_medium = round($percentage * count($questions['medium']));// 50 ao todo;
-        $percent_to_do_hard = round($percentage * count($questions['hard']));// 52 ao todo;
+        // Estou tomando a porcentagem escolhida do total de perguntas disponíveis em cada nível de dificuldade;
+        // OBS:.
+        // Depois de pensar pois dois dias encontrei o erro que impedia o 100% de funcionar;
+        // Nessa parte, caso seja 100% as variaveis recebem o total de item, porém embaixo farei um slice(corte) em um
+        // array de indices que vai de 0 ao total -1 ou seja vai faltar 1 elemento para o slice impedindo ele de acontecer
+        // para isso estou subtraindo 1 do total de perguntas em cada nível de dificuldade;
+        // Isso não impede de maneira nenhuma a questão "retirada" de entrar na aleatoridade, pois a aleatoridade
+        // está pautada nos indices e não na quantidade de questões;
+        $percent_to_do_easy = round($percentage * (count($questions['easy'])- 1));//51 ao todo;
+        $percent_to_do_medium = round($percentage * (count($questions['medium']) - 1));// 50 ao todo;
+        $percent_to_do_hard = round($percentage * (count($questions['hard']) - 1));// 52 ao todo;
 
         // Vou fazer uma verificação de segurança para garantir que o número de perguntas não seja menor que 1 e esteja dentro do limite disponível em cada nível de dificuldade;
         if ((1 < $percent_to_do_easy && $percent_to_do_easy < count($questions['easy'])) && (1 < $percent_to_do_medium && $percent_to_do_medium < count($questions['medium'])) && (1 < $percent_to_do_hard && $percent_to_do_hard < count($questions['hard']))) {
@@ -77,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $selected_questions[] = $questions['hard'][$index];
                 }
             } else { // aleatory
-                // Para as questões aleatórias, vou pegar 20 questões de cada nível de dificuldade, obtendo um total de 60 questões no array to_aleatory, dessas irei sortear 20 questões para o jogador responder;
+                // Para as questões aleatórias, vou pegar novamente a porcentagem de questões de cada nível de dificuldade e salvar no array to_aleatory, dessas irei sortear a porcentagem de questões para o jogador responder;
                 $to_aleatory = [];
                 foreach ($indices_easy as $index) {
                     $to_aleatory[] = $questions['easy'][$index];
@@ -90,7 +97,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
                 // Agora vou embaralhar o array to_aleatory;
                 shuffle($to_aleatory);
-                $_SESSION['to_aleatory'] = $to_aleatory;
+                // Usado no debug da sessão: $_SESSION['to_aleatory'] = $to_aleatory;
                 $n_first = round($percentage * count($to_aleatory));
                 $selected_questions = array_slice($to_aleatory, 0, $n_first);
             }
@@ -104,7 +111,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // E armazeno uma mensagem de erro;
             $_SESSION['error'] = 'Não há perguntas suficientes para o quiz.';
             // Chama o Debbugger;
-            header("Location: debug.php");
+            header("Location: index.php");
             // Retorno para a página inicial;
             //header("Location: index.php");
             //exit();

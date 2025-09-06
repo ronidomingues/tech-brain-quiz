@@ -1690,4 +1690,7 @@ $questions = [
         ],        
     ],
 ];
+#print_r(count($questions['easy']));
+#print_r(count($questions['medium']));
+#print_r(count($questions['hard']));
 ?>
