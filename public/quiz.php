@@ -1,4 +1,6 @@
 <?php
+// Inporta o arquivo de configuração de caminhos base do projeto;
+require_once(__DIR__.'/../config.php');
 // Recupera os dados do jogador e armazena na sessão;
 session_start();
 // header serve para informar ao navegador qual o tipo de conteúdo que será renderizado na página;
@@ -43,9 +45,9 @@ header('Content-Type: text/html; charset=utf-8');
 
                 <h4><!-- Aqui estou escrevendo a questão atual e o total de questões; -->
                     <?php if ($_SESSION['idioms'] === 'pt_br') { ?>
-                        Questão <?= $_SESSION['current_question']; ?> de <?= count($_SESSION['questions']); ?>
+                        Questão <?= $_SESSION['current_question'] + 1; ?> de <?= count($_SESSION['questions']); ?>
                     <?php } elseif ($_SESSION['idioms'] === 'en_us') { ?>
-                        Question <?= $_SESSION['current_question']; ?> of <?= count($_SESSION['questions']); ?>
+                        Question <?= $_SESSION['current_question'] + 1; ?> of <?= count($_SESSION['questions']); ?>
                     <?php } ?>
                 </h4>
                 <!-- Aqui estou renderizando o emogi e a questão atual; -->
@@ -53,7 +55,7 @@ header('Content-Type: text/html; charset=utf-8');
                     <p class="question"><strong><?= $_SESSION['questions'][$_SESSION['current_question']]['emoji'] . "  " . $_SESSION['questions'][$_SESSION['current_question']]['question']; ?></strong></p>
                 <?php }?>
                 <!-- Aqui crio um novo formulário, pois será necessário enviar a resposta dele para o backend para conferir se ela esta correta; -->
-                <form action="./api/call_quiz_manager.php" method="POST">
+                <form action="<?= BASE_URL ?>/api/call_quiz_manager.php" method="POST">
                     <!-- Aqui vou colocar um condicional para mostrar ou não as alternativas do formulario juntamente com o botão de enviar a resposta; -->
                     <?php if ($_SESSION['btn_send_answer'] && $_SESSION['lives'] > 0) { ?>
                         <?php foreach ($_SESSION['questions'][$_SESSION['current_question']]['alternatives'] as $key => $alternative) { ?>
@@ -74,7 +76,7 @@ header('Content-Type: text/html; charset=utf-8');
                         <input type="submit" value="Reiniciar Quiz" name="restart_quiz">
                     <?php } ?>
                 </form>
-                <form action="./api/call_quiz_manager.php" method="POST">
+                <form action="<?= BASE_URL ?>/api/call_quiz_manager.php" method="POST">
                     <input type="submit" value="Desistir e sair" name="back_to_menu">
                 </form>
             </div>
@@ -112,7 +114,7 @@ header('Content-Type: text/html; charset=utf-8');
                         </tbody>
                     </table>
                 </div>
-                <form action="./api/call_quiz_manager.php" method="POST">
+                <form action="<?= BASE_URL ?>/api/call_quiz_manager.php" method="POST">
                     <input type="submit" value="Finalizar e voltar ao menu" name="back_to_menu">
                 </form>
             <?php } ?>

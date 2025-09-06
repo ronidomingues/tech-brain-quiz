@@ -1,4 +1,6 @@
 <?php
+// Importa o arquivo de configuração de caminhos base do projeto;
+require_once(__DIR__.'/../../config.php');
 // Inicia uma sessão;
 session_start();
 // Verifica se o formulário foi enviado corretamente e caso afirmativo, armazena os dados na sessão e cria variáveis necessárias;
@@ -14,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['idioms'] = $idioms; // Armazena o idioma escolhido na sessão;
         $_SESSION['lives'] = 3; // Define o número inicial de vidas;
         $_SESSION['score'] = 0; // Define a pontuação inicial;
-        $_SESSION['current_question'] = 1; // Define a questão atual;
+        $_SESSION['current_question'] = 0; // Define a questão atual;
         $_SESSION['feedback'] = ''; // Define o feedback inicial Acerto ou erro;
         $_SESSION['explanation'] = ''; // Define a explicação que será mostrada ao jogador;
         $_SESSION['idioms'] = $idioms; // Armazena o idioma escolhido na sessão;
@@ -111,13 +113,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // E armazeno uma mensagem de erro;
             $_SESSION['error'] = 'Não há perguntas suficientes para o quiz.';
             // Chama o Debbugger;
-            header("Location: index.php");
+            header("Location: ".BASE_URL."/index.php");
             // Retorno para a página inicial;
             //header("Location: index.php");
             //exit();
         }
 
-        header("Location: /quiz.php");
+        header("Location: ".BASE_URL.'/quiz.php');
         exit();
     } 
     // Estou agora verificando a passagem da variável alternatives, que armazena as alternativas escolhidas pelo jogador, a partir da passagem dela ocorrerão novas ações;
@@ -148,7 +150,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         // Chama a página do quiz novamente;
-        header("Location: /quiz.php");
+        header("Location: ".BASE_URL.'/quiz.php');
     }
     // Estou agora verificando a passagem da variável next_question, que armazena o botão "Proxima Questão", a partir da passagem dela ocorrerão novas ações;
     if (isset($_POST["next_question"])){
@@ -157,7 +159,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Habilita o botão de enviar resposta;
         $_SESSION['btn_send_answer'] = true;
         // Chama a página do quiz novamente;
-        header("Location: /quiz.php");
+        header("Location: ".BASE_URL.'/quiz.php');
     }
     // Estou agora verificando a passagem da variável restart_quiz, que armazena o botão "Reiniciar Quiz", a partir da passagem dela ocorrerão novas ações;
     if (isset($_POST["restart_quiz"])){
@@ -170,7 +172,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Habilita o botão de enviar resposta;
         $_SESSION['btn_send_answer'] = true;
         // Chama a página do quiz novamente;
-        header("Location: /quiz.php");
+        header("Location: ".BASE_URL.'/quiz.php');
     }
     // Estou agora verificando a passagem da variável back_to_menu, que armazena o botão "Voltar ao Menu", a partir da passagem dela ocorrerão novas ações;
     if (isset($_POST["back_to_menu"])){
@@ -179,7 +181,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Destroi a sessão;
         session_destroy();
         // Chama a página do menu novamente;
-        header("Location: /index.php");
+        header("Location: ".BASE_URL.'/index.php');
     }
 }
 ?>
