@@ -60,21 +60,31 @@ Foi criado como primeiro trabalho da disciplina de **Desenvolvimento Backend** d
 ## Estrutura do Projeto
 
 ```bash
-tech-brain-quiz
+tech-brain-quiz/
+├── config.php
 ├── docs
-│   ├── img                     # Imagens explicativas do quiz
+│   ├── img                         # Imagens explicativas do quiz
 │   └── proposta_quiz_backend.pdf
 ├── LICENSE
-├── public                       # Pasta acessível pelo navegador
+├── public                          # Pasta que deve ser acessível pelo navegador
 │   ├── api
+│   │   └── call_quiz_manager.php
 │   ├── assets
+│   │   ├── img
+│   │   ├── scripts
+│   │   └── styles
 │   ├── index.php
 │   └── quiz.php
 ├── README.md
-├── src                          # Pasta protegida, não acessível pelo navegador
+├── src                             # Pasta protegida, não acessível pelo navegador
 │   ├── backend
+│   │   └── quiz_manager.php
 │   └── data
+│       └── questions
+│           ├── questions_en_us.php
+│           └── questions_pt_br.php
 └── tests
+    └── debug.php
 ```
 
 ---
@@ -85,9 +95,48 @@ Os arrays de questões (`questions_pt_br.php` e `questions_en_us.php`) seguem es
 
 ```php
 $questions = [
-    'easy' => [ /* perguntas fáceis */ ],
-    'medium' => [ /* perguntas médias */ ],
-    'hard' => [ /* perguntas difíceis */ ]
+    'easy' => [ /* perguntas fáceis */
+        [
+            'question' => 'Pergunta 1',
+            'alternatives' => [
+                "a" => "Alternativa 1",
+                "b" => "Alternativa 2",
+                "c" => "Alternativa 3",
+            ]
+            "answer" => "Resposta correta",
+            "explanation" => "Explicação da pergunta 1"
+            "emoji" => "Emoji",
+        ],
+        /* e assim por diante */
+    ],
+    'medium' => [ /* perguntas médias */
+        [
+            'question' => 'Pergunta 1',
+            'alternatives' => [
+                "a" => "Alternativa 1",
+                "b" => "Alternativa 2",
+                "c" => "Alternativa 3",
+            ]
+            "answer" => "Resposta correta",
+            "explanation" => "Explicação da pergunta 1"
+            "emoji" => "Emoji",
+        ],
+        /* e assim por diante */
+    ],
+    'hard' => [ /* perguntas difíceis */
+        [
+            'question' => 'Pergunta 1',
+            'alternatives' => [
+                "a" => "Alternativa 1",
+                "b" => "Alternativa 2",
+                "c" => "Alternativa 3",
+            ]
+            "answer" => "Resposta correta",
+            "explanation" => "Explicação da pergunta 1"
+            "emoji" => "Emoji",
+        ],
+        /* e assim por diante */
+    ]
 ];
 ```
 
