@@ -63,7 +63,9 @@ header('Content-Type: text/html; charset=utf-8');
                         <?php } ?>
                         <input type="submit" value="Confirmar Resposta">
                     <?php } elseif (!$_SESSION['btn_send_answer'] && $_SESSION['lives'] > 0) { ?>
-                        <p><?= $_SESSION['feedback'] . $_SESSION['explanation']; ?></p>
+                        <p>
+                            <?= $_SESSION['feedback']. $_SESSION['explanation']; ?>
+                        </p>
                         <input type="submit" value= <?= $_SESSION["current_question"] === count($_SESSION['questions']) - 1 ? "Finalizar Quiz" : "Próxima Questão"; ?> name="next_question"> <?php }
                     ?>
                     <?php if ($_SESSION['lives'] === 0) { ?>

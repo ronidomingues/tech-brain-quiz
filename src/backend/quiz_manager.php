@@ -139,7 +139,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['score'] += 1;
         } else {
             // Armazeno o feedback e a explicação da pergunta atual na sessão;
-            $_SESSION['feedback'] = '🤦‍♂️ Que pena '.$_SESSION['player'].'! Sua resposta foi incorreta. ❌ <br>';
+            $_SESSION['feedback'] = '<p>🤦‍♂️ Que pena '.$_SESSION['player'].'! Sua resposta foi incorreta. ❌ </p>'.'<p><strong>🤯 A alternativa correta é: ('.$_SESSION['questions'][$_SESSION['current_question']]['answer'].') '.$_SESSION['questions'][$_SESSION['current_question']]['alternatives'][$_SESSION['questions'][$_SESSION['current_question']]['answer']].'</strong></p>';
             $_SESSION['explanation'] = "🧑‍🎓 : ".$_SESSION['questions'][$_SESSION['current_question']]['explanation'];
             // Armazeno a "Des-pontuação" do jogador na sessão;
             $_SESSION['errors'] += 1;
